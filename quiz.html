@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Module 1 Quiz</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="quiz-container" id="quiz-container">
+        <h2>Module 1 Quiz</h2>
+        <form id="quiz-form">
+            <div class="quiz-question" id="question1">
+                <p>1. What is Zig?</p>
+                <input type="radio" id="q1a" name="q1" value="A">
+                <label for="q1a">A programming language</label><br>
+                <input type="radio" id="q1b" name="q1" value="B">
+                <label for="q1b">A type of dance</label><br>
+                <input type="radio" id="q1c" name="q1" value="C">
+                <label for="q1c">A musical instrument</label>
+            </div>
+            <div class="quiz-question" id="question2" style="display:none;">
+                <p>2. What is the main focus of Zig?</p>
+                <input type="radio" id="q2a" name="q2" value="A">
+                <label for="q2a">Web development</label><br>
+                <input type="radio" id="q2b" name="q2" value="B">
+                <label for="q2b">Robustness, optimality, and maintainability</label><br>
+                <input type="radio" id="q2c" name="q2" value="C">
+                <label for="q2c">Mobile app development</label>
+            </div>
+            <div class="quiz-question" id="question3" style="display:none;">
+                <p>3. Which of the following is a feature of Zig?</p>
+                <input type="radio" id="q3a" name="q3" value="A">
+                <label for="q3a">Memory safety</label><br>
+                <input type="radio" id="q3b" name="q3" value="B">
+                <label for="q3b">Garbage collection</label><br>
+                <input type="radio" id="q3c" name="q3" value="C">
+                <label for="q3c">Dynamic typing</label>
+            </div>
+            <button type="button" id="back-button" style="display:none;" onclick="showPreviousQuestion()">Back</button>
+            <button type="button" id="next-button" onclick="showNextQuestion()">Next</button>
+            <button type="submit" id="submit-button" style="display:none;">Submit</button>
+        </form>
+    </div>
+    <script>
+        let currentQuestionIndex = 1;
+        const totalQuestions = 3;
+
+        function showNextQuestion() {
+            document.getElementById(`question${currentQuestionIndex}`).style.display = 'none';
+            currentQuestionIndex++;
+            if (currentQuestionIndex <= totalQuestions) {
+                document.getElementById(`question${currentQuestionIndex}`).style.display = 'block';
+            }
+            if (currentQuestionIndex > 1) {
+                document.getElementById('back-button').style.display = 'block';
+            }
+            if (currentQuestionIndex === totalQuestions) {
+                document.getElementById('next-button').style.display = 'none';
+                document.getElementById('submit-button').style.display = 'block';
+            }
+        }
+
+        function showPreviousQuestion() {
+            document.getElementById(`question${currentQuestionIndex}`).style.display = 'none';
+            currentQuestionIndex--;
+            if (currentQuestionIndex >= 1) {
+                document.getElementById(`question${currentQuestionIndex}`).style.display = 'block';
+            }
+            if (currentQuestionIndex < totalQuestions) {
+                document.getElementById('next-button').style.display = 'block';
+                document.getElementById('submit-button').style.display = 'none';
+            }
+            if (currentQuestionIndex === 1) {
+                document.getElementById('back-button').style.display = 'none';
+            }
+        }
+
+        document.addEventListener('DOMContentLoaded', (event) => {
+            document.getElementById(`question${currentQuestionIndex}`).style.display = 'block';
+        });
+    </script>
+</body>
+</html>
